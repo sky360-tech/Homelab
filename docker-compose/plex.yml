@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - PLEX_CLAIM=claim-xxxxx
+      - PLEX_UID=1000
+      - PLEX_GID=100
+      - TZ=America/Chicago
+    networks:
+      - custom_bridge1
+    volumes:
+      - /files2/config-plex:/config
+      - /srv/dev-disk-by-uuid-xxx/files/Movies:/movies
+      - type: bind
+        source: /srv/dev-disk-by-uuid-yyy/files3/Movies2
+        target: /movies2
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - "32400:32400"
+      - "3005:3005"
+      - "8324:8324"
+      - "32469:32469"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+    restart: unless-stopped
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower_plex
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_REMOVE_VOLUMES=false
+      - TZ=America/Chicago
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 3 * * *"
+    restart: unless-stopped
+    networks:
+      - custom_bridge1
+
+networks:
+  custom_bridge1:
+    driver: bridge

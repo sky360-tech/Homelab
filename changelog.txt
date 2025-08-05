@@ -1,0 +1,10 @@
+# Home Lab Changelog
+
+## 2025-08-01
+- Set up PhotoPrism on OMV
+- Upgraded OMV storage to 1.5TB
+- Moved TrueNAS VM to Proxmox 1
+
+## 2025-07-20
+- Installed Pi-hole in Docker
+- Enabled SMB on OMV

@@ -1,0 +1,38 @@
+services:
+  pihole:
+    image: pihole/pihole:latest
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    hostname: pihole
+    networks:
+      pihole-network:
+        ipv4_address: 10.0.0.20
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: '9612'
+    volumes:
+      - /files2/pihole/etc-pihole:/etc/pihole
+      - /files2/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+  custom_watchtower:
+    image: containrrr/watchtower:latest
+    container_name: custom_watchtower
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_REMOVE_VOLUMES=false
+      - TZ=America/Chicago
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 3 * * *"
+    restart: unless-stopped
+    networks:
+      - pihole-network
+
+networks:
+  pihole-network:
+    name: local-network
+    external: true

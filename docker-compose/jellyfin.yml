@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    user: 1000:100
+    networks:
+      - custom_bridge
+    volumes:
+      - /files2/config-jellyfin:/config
+      - /srv/dev-disk-by-uuid-xxx/files/Movies:/movies
+      - type: bind
+        source: /srv/dev-disk-by-uuid-xxx/files/Movies
+        target: /Movies
+      - type: bind
+        source: /srv/dev-disk-by-uuid-xxx/files/Movies
+        target: /Movies
+        read_only: true
+      - type: bind
+        source: /srv/dev-disk-by-uuid-yyy/files3/Movies2
+        target: /movies2
+      - type: bind
+        source: /srv/dev-disk-by-uuid-yyy/files3/Music
+        target: /music
+    ports:
+      - "8096:8096"
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - INTEL_QSV=1
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower_jellyfin
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_REMOVE_VOLUMES=false
+      - TZ=America/Chicago
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 3 * * *"
+    restart: unless-stopped
+    networks:
+      - custom_bridge
+
+networks:
+  custom_bridge:
+    driver: bridge

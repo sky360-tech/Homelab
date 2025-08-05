@@ -1,0 +1,8 @@
+# ToDos
+
+- [ ] Upgrade Proxmox 2 RAM from 8GB → 32GB
+- [ ] Fix TrueNAS VM issue (networking problem)
+- [ ] Add uptime monitoring service (Uptime Kuma?)
+- [ ] Install HomeAssistant for smart devices
+- [ ] Add Frigate for security cameras
+- [ ] Make network diagram (use draw.io or Lucidchart)

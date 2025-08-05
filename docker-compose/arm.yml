@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  arm:
+    image: automaticrippingmachine/automatic-ripping-machine:latest
+    container_name: arm
+    restart: always
+    privileged: true
+    ports:
+      - "9191:8080"
+    environment:
+      - ARM_UID=1001
+      - ARM_GID=1002
+    volumes:
+      - /files2/ARM:/home/arm
+      - /files2/ARM/config:/etc/arm/config
+      - /files2/ARM/logs:/home/arm/logs
+      - /files2/ARM/tmp:/home/arm/tmp
+      - /srv/dev-disk-by-uuid-xxx/files/Movies:/home/arm/media
+    devices:
+      - /dev/sr0:/dev/sr0
+      - /dev/sr1:/dev/sr1
+      - /dev/sr2:/dev/sr2
+      - /dev/sr3:/dev/sr3

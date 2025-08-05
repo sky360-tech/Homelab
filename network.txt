@@ -1,0 +1,15 @@
+# Network Setup
+
+## IP Scheme
+- OMV: `10.0.0.8`
+- Proxmox 1: `10.x.x.xx`
+- Proxmox 2: `10.x.x.xx`
+
+## Hardware
+- Google WiFi as main router and DHCP
+- TP-Link 5-port Gigabit Switch for wired devices
+- Linksys (old) router as unmanaged switch (bridge mode)
+
+## Services and DNS
+- Pi-hole DNS: `10.x.x.xx`
+- NGINX Proxy Manager used for routing services to subdomains
