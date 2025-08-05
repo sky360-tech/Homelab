@@ -1,4 +1,4 @@
-# 🧪 My Home Lab Docker Setup
+# 🧪 My Home Lab  Setup
 
 This repo documents and contains the Docker Compose files powering my self-hosted home lab.
 
