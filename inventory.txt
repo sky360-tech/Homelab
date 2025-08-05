@@ -19,3 +19,11 @@
 - Dual E5-2640 CPUs
 - 8GB DDR3 ECC RAM
 - 250GB SSD
+
+## Libreelec
+- Toshiba Porteze Z930
+- i5 3rd gen
+- 4GB DDR3 RAM
+- 120GB SSD
+
+
