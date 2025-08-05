@@ -9,6 +9,8 @@ This repo documents and contains the Docker Compose files powering my self-hoste
 | OMV Server     | i3 (4th gen), 16 GB DDR3, 250 GB HDD, 500 GB HDD, 500 GB HDD| NAS + Docker Host |
 | Proxmox Server 1 | i5 (4th gen), 250 GB HDD, 256 GB SSD | VMs: Kali Purple, Windows, TrueNAS |
 | Proxmox Server 2 | Lenovo RD630, 2×E5-2640, 8 GB, 250 GB SSD | More VMs |
+| libreelec | i5 (3rd gen), 120 GB SSD, 4 GB DDR3 | Running my TV |
+
 
 ## 🧩 Services
 
