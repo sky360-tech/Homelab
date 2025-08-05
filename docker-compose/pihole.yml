@@ -7,7 +7,7 @@ services:
     hostname: pihole
     networks:
       pihole-network:
-        ipv4_address: 10.0.0.20
+        ipv4_address: 10.x.x.xx
     environment:
       TZ: 'America/Chicago'
       WEBPASSWORD: '9612'
